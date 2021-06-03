@@ -1,0 +1,64 @@
+ion-menu ion-content {
+    --background: var(--ion-color-primary);
+}
+.menu-queue-wrap {
+    text-align: center;
+    margin: 64px auto;
+    --color: white;
+}
+.menu-icon-wrap {
+    text-align: center;
+    margin: 32px 0;
+}
+.menu-text-wrap {
+    text-align: center;
+    margin: 32px 0;
+    color: white;
+}
+.menu-text-wrap .menu-title{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+}
+.menu-text-wrap .menu-subtitle{
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 17px;
+    margin-top: 0;
+}
+.menu-nav-wrap, .menu-sub-nav-wrap{
+    margin: 64px auto;
+    max-width: 192px;
+}
+.menu-nav {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 25px;
+    display: flex;
+    margin: 24px 0;
+}
+.menu-nav.menu-sub-nav {
+    margin: 8px 0;
+}
+.menu-nav ion-icon {
+    font-size: 24px;
+    display: inline-block;
+    margin-right: 18px;
+}
+.menu-external-nav-wrap {
+    position: relative;
+    height: 120px;
+}
+.menu-external-nav-wrap a {
+    height: inherit;
+}
+.menu-external-nav-wrap img {
+    position: absolute;
+    top: 0;
+    height: inherit;
+    max-width: unset;
+    left: 50%;
+    transform: translate(-50%);
+}

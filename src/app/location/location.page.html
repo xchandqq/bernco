@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      My Location
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-content" color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="map-wrapper">
+    <div id="map_center">
+      <ion-icon name="location-sharp" color="primary"></ion-icon>
+    </div>
+    <div id="map"></div> 
+
+    <div class="location-searchbar-wrap">
+      <input id="location-searchbar" type="text" placeholder="Search">
+      <ion-icon name="search-outline"></ion-icon>
+    </div>
+    <!-- <ion-searchbar #locationSearchbar id="location-searchbar" class="searchbar" placeholder="Search" showCancelButton="never" showClearButton="never"></ion-searchbar> -->
+    <ion-button expand="block" shape="round" color="primary" (click)="onSave($event)" [disabled]="!isInit">
+      Save Address
+    </ion-button>
+  </div>
+  
+</ion-content>

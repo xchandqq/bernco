@@ -1,0 +1,135 @@
+.content-wrap {
+    padding: 0 8px !important;
+}
+.article-title {
+    font-size: 21px;
+    line-height: 26px;
+    font-weight: bold;
+    padding: 0 8px;
+}
+.article-meta-wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 0 8px;
+}
+.article-author-avatar-wrap {
+    width: 36px;
+    height: 36px;
+}
+.article-author-avatar-wrap img {
+    min-width: 36px;
+    min-height: 36px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+.article-author-date-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-left: 16px;
+}
+.article-author-text {
+    font-size: 14px;
+    color: #746F6F;
+}
+.article-date-text {
+    font-size: 12px;
+    color: #BFBDBD;
+}
+.article-meta-wrap ion-button {
+    position: absolute;
+    top: -8px;
+    right: 0;
+    --padding-start: 12px;
+    --padding-end: 12px;
+}
+.article-meta-wrap ion-button ion-icon{
+    font-size: 15px;
+}
+.article-image {
+    width: 100%;
+    height: 205px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 40px 0;
+    border-radius: 15px;
+}
+.article-content-wrap {
+    padding: 0 36px;
+    font-size: 16px;
+    line-height: 26px;
+    color: #746F6F;
+}
+.article-tags-wrap {
+    background-color: #F8F8F8;
+    margin-left: -8px;
+    margin-right: -8px;
+    padding: 40px 26px;
+}
+.article-tags-text, .article-related-text {
+    text-align: center;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 26px;
+    margin-top: 0;
+}
+.article-tags-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.article-tag {
+    background-color: var(--ion-color-primary);
+    border-radius: 8px;
+    padding: 6px 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: white;
+    font-family: sans-serif;
+    font-size: 15px;
+    line-height: 26px;
+}
+.article-related-wrap {
+    margin: 34px -8px;
+}
+.article-related-container {
+    display: flex;
+    overflow: scroll;
+    padding: 12px 0;
+}
+.article-related-window {
+    min-width: 230px;
+    width: 230px;
+    margin: 0 4px;
+    position: relative;
+    transition: transform 0.25s ease-out;
+}
+.article-related-img {
+    width: 100%;
+    min-height: 280px;
+    border-radius: 25px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: lightgray;
+}
+.article-related-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    padding-right: 32px;
+}
+.article-related-window ion-button {
+    position: absolute;
+    top: 280px;
+    right: 0;
+    --padding-start: 4px;
+    --padding-end: 4px;
+}
+.article-related-window ion-button ion-icon {
+    font-size: 15px;
+}
+.article-related-space {
+    min-width: calc(50% - 115px - 4px);
+}

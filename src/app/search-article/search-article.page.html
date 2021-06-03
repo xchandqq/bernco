@@ -1,0 +1,87 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Search
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-content" color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-info-wrap">
+    <h1 class="ff-m" [innerHtml]="title"></h1>
+    <span *ngIf="!onQueue">{{searchResultCount}} item(s)</span>
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)" [disabled]="onQueue || onQueueFromLoad">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="content-queue-wrap" *ngIf="onQueue">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="content-wrap" *ngIf="!onQueue">
+    <div class="article-wrap" *ngFor="let article of articles">
+      <h2 class="ff-m" [innerHtml]="article.title" (click)="onArticleClick(article)"></h2>
+      <div class="article-meta">
+        <img src="{{article.authorAvatarUrl}}" alt="">
+        <div>
+          <span [innerHtml]="article.authorName"></span>
+          <span>&bull;</span>
+          <span [innerHtml]="article.date"></span>
+          <span>&bull;</span>
+          <span [innerHtml]="article.categoryNames"></span>
+        </div>
+      </div>
+      <div class="article-media" (click)="onArticleClick(article)" [ngStyle]="{'background-image' : 'url(' + article.imageUrl}"></div>
+      <ion-button class="bookmark-button" fill="clear" shape="round" [disabled]="!canBookmark">
+        <ion-icon name="{{article.bookmarked ? 'bookmark-filled' : 'saved-articles-icon'}}" color="{{article.bookmarked?'primary':'dark'}}"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+
+  <ion-infinite-scroll position="bottom" (ionInfinite)="onLoadMore($event)" [disabled]="page > maxPages || onQueue || onQueueFromRefresh">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="content-end-spacing"></div>
+  
+  <div class="footer-wrap" slot="fixed">
+    <div class="footer-background-wrap">
+      <img class="footer-bg-side side-left" src="../assets/footer/side.png" alt="">
+      <img class="footer-bg-filler side-left" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-center" src="../assets/footer/center.png" alt="">
+      <img class="footer-bg-filler side-right" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-side side-right" src="../assets/footer/side.png" alt="">
+      <ion-button shape="round" color="primary" (click)="onCall()">
+        <ion-icon name="phone"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="footer-tabs-wrap">
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/articles' ]">
+        <ion-icon name="home" color="primary"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/saved-articles' ]" routerDirection="forward">
+        <ion-icon name="saved-articles-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" href="{{external_link}}">
+        <ion-icon name="external" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/events' ]" routerDirection="forward">
+        <ion-icon name="events-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/resource-categories' ]" routerDirection="forward">
+        <ion-icon name="resources-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/media' ]"  routerDirection="forward">
+        <ion-icon name="media-icon" color="medium"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

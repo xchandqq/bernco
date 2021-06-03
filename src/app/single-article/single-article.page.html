@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Article
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)" [disabled]="onQueue || onQueueFromLoad">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="content-queue-wrap" *ngIf="onQueue">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="content-wrap" *ngIf="!onQueue">
+    <h1 class="article-title ff-m" [innerHtml]="article.title"></h1>
+    <div class="article-meta-wrap">
+      <div class="article-author-avatar-wrap">
+        <img src="{{article.authorAvatarUrl48}}" alt="">
+      </div>
+      <div class="article-author-date-wrap">
+        <span class="article-author-text" [innerHtml]="article.authorName"></span>
+        <span class="article-date-text" [innerHtml]="article.date"></span>
+      </div>
+      <ion-button class="bookmark-button" fill="clear" shape="round" (click)="onBookmark(article)" [disabled]="!canBookmark">
+        <ion-icon name="{{article.bookmarked ? 'bookmark-filled' : 'saved-articles-icon'}}" color="{{article.bookmarked?'primary':'dark'}}"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="article-image" [ngStyle]="{'background-image' : 'url(' + article.imageUrl}"></div>
+    <div class="article-content-wrap" [innerHtml]="article.content"></div>
+    <div class="article-tags-wrap">
+      <h2 class="article-tags-text ff-m">Tags</h2>
+      <div class="article-tags-container">
+        <div class="article-tag" *ngFor="let tag of article.tagNames" [innerHtml]='"#" + tag'></div>
+      </div>
+    </div>
+    <div class="article-related-wrap">
+      <h2 class="article-related-text ff-m">Related Articles</h2>
+      <div id="related-article-scroll" class="article-related-container" (scroll)="onScroll($event)">
+        <div class="article-related-space"></div>
+        <div class="article-related-window" *ngFor="let rel of relatedArticles" (click)="onRelatedArticle(rel)">
+          <div class="article-related-img" [ngStyle]="{'background-image' : 'url(' + rel.imageUrl}"></div>
+          <h3 class="article-related-title ff-m" [innerHtml]="rel.title"></h3>
+          <ion-button class="bookmark-button" fill="clear" shape="round" (click)="onBookmark(rel)" [disabled]="!canBookmark">
+            <ion-icon name="{{rel.bookmarked ? 'bookmark-filled' : 'saved-articles-icon'}}" color="{{rel.bookmarked?'primary':'dark'}}"></ion-icon>
+          </ion-button>
+        </div>
+        
+        <div class="article-related-space"></div>
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll [disabled]="hasLoadedRelatedArticles" position="bottom" (ionInfinite)="onLoadRelated($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="content-end-spacing"></div>
+
+  <div slot="fixed" class="footer-2-wrap">
+    <ion-button fill="clear" shape="round" (click)="onBookmark(article)" [disabled]="onQueue || !canBookmark">
+      <ion-icon *ngIf="!onQueue" name="{{article.bookmarked ? 'bookmark-filled' : 'saved-articles-icon'}}" color="{{article.bookmarked?'primary':'dark'}}"></ion-icon>
+    </ion-button>
+    <ion-button shape="round" (click)="onCall()">
+      <ion-icon name="phone"></ion-icon>
+      Call Us
+    </ion-button>
+  </div>
+
+</ion-content>

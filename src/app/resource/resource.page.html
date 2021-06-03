@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="!onQueue" [innerHtml]="resource.title">
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-content" color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="content-queue-wrap" *ngIf="onQueue">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="content-wrap" *ngIf="!onQueue">
+    <div class="resource-img-wrap" [ngStyle]="{'background-image' : 'url('+resource.mediaUrl+')'}"></div>
+    <div class="resource-meta-wrap">
+      <h2 class="resource-title ff-m" [innerHtml]="resource.title"></h2>
+      <div class="resource-info-wrap">
+        <div class="resource-info">
+          <ion-icon name="location-sharp"></ion-icon>
+          <span class="resource-text" [innerHtml]="resource.location ? resource.location : 'No available location'"></span>
+        </div>
+        <div class="resource-info">
+          <ion-icon name="phone"></ion-icon>
+          <span class="resource-text" [innerHtml]="resource.contact"></span>
+        </div>
+        <div class="resource-info">
+          <ion-icon name="globe-americas-solid"></ion-icon>
+          <a href="{{resource.website}}"><span class="resource-text" [innerHtml]="resource.website"></span></a>
+        </div>
+      </div>
+    </div>
+    <div class="tabs-wrap">
+      <div class="content-tab tab-active" (click)="onTabClick($event, 0)">
+        About
+      </div>
+      <div class="content-tab" (click)="onTabClick($event, 1)">
+        Hours
+      </div>
+      <div class="content-tab" (click)="onTabClick($event, 2)">
+        Gallery
+      </div>
+      <div class="content-tab" (click)="onTabClick($event, 3)">
+        Location
+      </div>
+    </div>
+    <div class="tab-content-wrap">
+      <div class="about-content" *ngIf="currentTabIndex==0" [innerHtml]="resource.content"></div>
+      <div class="hours-content" *ngIf="currentTabIndex==1">
+        <div class="days-wrap">
+          <div *ngFor="let day of resource.days" [innerHtml]="day"></div>
+        </div>
+        <div class="hours-wrap">
+          <div *ngFor="let hour of resource.hours" [innerHtml]="hour"></div>
+        </div>
+      </div>
+      <div class="gallery-content" *ngIf="currentTabIndex==2">
+        <div class="gallery-wrap" *ngFor="let img of galleryUrls" [ngStyle]="{'background-image' : 'url('+img+')'}"></div>
+      </div>
+      <div class="location-content" *ngIf="currentTabIndex==3">
+        <div class="map-wrapper">
+          <div id="map"></div> 
+        </div>
+        <div class="map-control">
+          <ion-button (click)="toCenter()" shape="round">
+            Center
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll position="bottom" (ionInfinite)="loadMoreImages($event)" [disabled]="infiniteScrollDisabled()">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="content-end-spacing"></div>
+
+  <div slot="fixed" class="footer-2-wrap">
+    <ion-button shape="round" (click)="onCall()">
+      <ion-icon name="phone"></ion-icon>
+      Call Us
+    </ion-button>
+  </div>
+  
+
+</ion-content>

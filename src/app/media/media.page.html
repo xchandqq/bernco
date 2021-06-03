@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      News Feed
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-content" color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-info-wrap">
+    <h1 class="ff-m">Social Media</h1>
+    <span>Keep posted on our social media</span>
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)" [disabled]="onQueue">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="tabs-wrap">
+    <ion-button fill="clear" class="media-tab tab-active" (click)="onTabClick($event, 0)" [disabled]="onQueue">
+      Facebook
+    </ion-button>
+    <ion-button fill="clear" class="media-tab" (click)="onTabClick($event, 1)"  [disabled]="onQueue">
+      Twitter
+    </ion-button>
+    <ion-button fill="clear" class="media-tab" (click)="onTabClick($event, 2)" [disabled]="true || onQueue">
+      Instagram
+    </ion-button>
+  </div>
+
+  <div class="media-content" *ngIf="!onQueue">
+  </div>
+
+  <div class="content-end-spacing"></div>
+  
+  <div class="footer-wrap" slot="fixed">
+    <div class="footer-background-wrap">
+      <img class="footer-bg-side side-left" src="../assets/footer/side.png" alt="">
+      <img class="footer-bg-filler side-left" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-center" src="../assets/footer/center.png" alt="">
+      <img class="footer-bg-filler side-right" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-side side-right" src="../assets/footer/side.png" alt="">
+      <ion-button shape="round" color="primary" (click)="onCall()">
+        <ion-icon name="phone"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="footer-tabs-wrap">
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/articles' ]" routerDirection="forward">
+        <ion-icon name="home" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/saved-articles' ]" routerDirection="forward">
+        <ion-icon name="saved-articles-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" href="{{external_link}}">
+        <ion-icon name="external" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/events' ]" routerDirection="forward">
+        <ion-icon name="events-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/resource-categories' ]" routerDirection="forward">
+        <ion-icon name="resources-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round">
+        <ion-icon name="media-icon" color="primary"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

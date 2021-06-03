@@ -1,0 +1,20 @@
+
+.search-panel {
+    background: white;
+    height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    padding: 0 30px;
+}
+.search-panel > span{
+    color: #2E2828;
+}
+ion-button.category-button {
+    height: 38px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    font-size: 14px;
+    text-transform: capitalize;
+    --box-shadow: 0 3px 6px #00000029;
+}

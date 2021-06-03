@@ -1,0 +1,52 @@
+.searchbar-wrap{
+    max-width: 400px;
+    margin: 0 auto;
+}
+ion-searchbar.searchbar {
+    padding-top: 0;
+    margin-top: 32px;
+    margin-left: 24px;
+    margin-right: 24px;
+    margin-bottom: 32px;
+    width: unset;
+}
+.content-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 400px;
+    margin: 0 auto;
+}
+.resource-category-wrap {
+    width: calc(50% - 4px);
+    margin-bottom: 8px;
+    box-shadow: 0 3px 6px #00000029;
+    border-radius: 10px;
+}
+.resource-category-media {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 16px;
+    font-size: 16px;
+    color: white;
+    text-shadow: 0 3px 6px #000000cd;
+    position: relative;
+}
+.resource-category-media:after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    content: "";
+    border-radius: 10px;
+    background-image: linear-gradient(0deg, #007200, transparent);
+}
+.resource-category-media span {
+    z-index: 10;
+}

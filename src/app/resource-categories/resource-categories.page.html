@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons> -->
+    <ion-title>
+      Browse
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-content" color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-info-wrap">
+    <h1 class="ff-m">Resources</h1>
+    <span>Discover help</span>
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)" [disabled]="onQueue || onQueueFromLoad || onNoConnection">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="searchbar-wrap">
+    <ion-searchbar [disabled]="onQueueFromSearch || onQueue || onNoConnection || onQueueFromRefresh || onQueueFromLoad" class="searchbar" placeholder="What are you looking for?" showCancelButton="never" showClearButton="never" (search)="onSearch($event)" [(ngModel)]="searchKeyword"></ion-searchbar>
+  </div>
+  
+  <div class="content-queue-wrap" *ngIf="onQueue || onQueueFromSearch">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="no-connection-wrap" *ngIf="onNoConnection">
+    <div class="no-connection-text">
+      <div>
+        <img src="../assets/no-connection.png" alt="" width="200" height="auto">
+      </div>
+      <span>You are not connected to the internet. Make sure your Wifi or Mobile Data is on and try again</span>
+      <ion-button (click)="onReconnect($event)" shape="round">
+        Reconnect
+      </ion-button>
+    </div>
+  </div>
+
+  <div class="content-wrap" *ngIf="!onQueue">
+    <div class="resource-category-wrap" *ngFor="let category of resourceCategories" (click)="onClickCategory(category)">
+      <div class="resource-category-media" [ngStyle]="{'background-image' : 'url(' + category.mediaUrl}">
+        <span [innerHtml]="category.title"></span>
+      </div>
+    </div>
+  </div>
+
+  <ion-infinite-scroll position="bottom" (ionInfinite)="onLoadMore($event)" [disabled]="page > maxPages || onQueue || onQueueFromRefresh || onNoConnection">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <div class="content-end-spacing"></div>
+  
+  <div class="footer-wrap" slot="fixed">
+    <div class="footer-background-wrap">
+      <img class="footer-bg-side side-left" src="../assets/footer/side.png" alt="">
+      <img class="footer-bg-filler side-left" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-center" src="../assets/footer/center.png" alt="">
+      <img class="footer-bg-filler side-right" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-side side-right" src="../assets/footer/side.png" alt="">
+      <ion-button shape="round" color="primary" (click)="onCall()">
+        <ion-icon name="phone"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="footer-tabs-wrap">
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/articles' ]" routerDirection="forward">
+        <ion-icon name="home" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/saved-articles' ]" routerDirection="forward">
+        <ion-icon name="saved-articles-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" href="{{external_link}}">
+        <ion-icon name="external" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round"  [routerLink]="[ '/events' ]" routerDirection="forward">
+        <ion-icon name="events-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round">
+        <ion-icon name="resources-icon" color="primary"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/media' ]"  routerDirection="forward">
+        <ion-icon name="media-icon" color="medium"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

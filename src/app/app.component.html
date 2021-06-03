@@ -1,0 +1,39 @@
+<ion-app>
+  <ion-split-pane contentId="menu-content">
+    <ion-menu contentId="menu-content" menuId="menu-content" side="end" type="overlay" (ionWillOpen)="onOpen($event)">
+      <ion-content>
+        <div class="menu-queue-wrap" *ngIf="onQueue">
+          <ion-spinner name="bubbles"></ion-spinner>
+        </div>
+        <div class="menu-icon-wrap" *ngIf="!onQueue">
+          <img class="menu-icon" src="{{logoUrl}}" alt="" width="124" height="124">
+        </div>
+        <div class="menu-text-wrap" *ngIf="!onQueue">
+          <h2 class="menu-title" [innerHtml]="title"></h2>
+          <h4 class="menu-subtitle" [innerHtml]="subtitle"></h4>
+        </div>
+        <div class="menu-nav-wrap">
+          <div class="menu-nav" *ngFor="let nav of getMainNavigationItems()" (click)="onNavClick(nav.href)">
+              <ion-icon name="{{nav.icon}}"></ion-icon>
+              <span [innerHtml]="nav.name"></span>
+          </div>
+        </div>
+        <div class="menu-sub-nav-wrap">
+          <div class="menu-nav menu-sub-nav" *ngFor="let nav of getSubNavigationItems()" (click)="onNavClick(nav.href)">
+            <span [innerHtml]="nav.name"></span>
+          </div>
+          <div class="menu-external-nav-wrap">
+            <a href="{{externalLinkUrl}}">
+              <img src="{{externalLinkLogo}}" alt="">
+            </a>
+          </div>
+        </div>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="menu-content">
+
+    </ion-router-outlet>
+
+  </ion-split-pane>
+
+</ion-app>

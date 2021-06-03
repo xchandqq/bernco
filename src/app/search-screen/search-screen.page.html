@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-searchbar id='articleSearchbar' class="searchbar" placeholder="What are you looking for?" showCancelButton="never" showClearButton="never" (search)="onSearch($event)" [(ngModel)]="searchKeyword"></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="search-panel">
+    <span>Explore categories</span>
+    <div class="content-queue-wrap" *ngIf="onQueue">
+      <ion-spinner></ion-spinner>
+    </div>
+    <div class="category-list-wrap" *ngIf="!onQueue">
+      <ion-button class="category-button" (click)="onCategorySelect(cat)" shape="round" color="light" *ngFor="let cat of categories">
+        <span [innerHtml]="cat.name"></span>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
+
