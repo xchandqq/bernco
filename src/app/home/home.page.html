@@ -1,0 +1,39 @@
+<ion-content [fullscreen]="true">
+
+  <div class="splash-screen-wrap" *ngIf="!onQueue && !onNoConnection">
+    <div class="logo-wrap">
+      <img src="{{logoUrl}}" alt="" width="165" height="165">
+    </div>
+    <div class="splash-text-wrap">
+      <h1 class="splash-title" [innerHtml]="title"></h1>
+      <span class="splash-subtitle" [innerHtml]="subtitle"></span>
+    </div>
+  </div>
+
+  <div class="splash-queue-wrap" *ngIf="onQueue">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="splash-no-connection-wrap" *ngIf="onNoConnection">
+    <div class="splash-no-connection-text">
+      <div>
+        <img src="../assets/no-connection.png" alt="" width="200" height="auto">
+      </div>
+      <span [innerHtml]="noConnectionMessage"></span>
+      <ion-button (click)="onReconnect($event)" shape="round">
+        Reconnect
+      </ion-button>
+    </div>
+  </div>
+
+  
+  <div id="image-1-wrap">
+    <img src="../assets/shape_1.png" alt="">
+  </div>
+  <div id="image-2-wrap">
+    <img src="../assets/sheep_1.png" alt="">
+  </div>
+  <div id="image-3-wrap">
+    <img src="../assets/sheep_2.png" alt="">
+  </div>
+</ion-content>

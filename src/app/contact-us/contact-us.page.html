@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="" defaultHref="articles" color="dark"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      Contact Us
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-menu-button menu="menu-content" color="dark"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="page-info-wrap">
+    <h1 class="ff-m">Reach out to us</h1>
+    <span>Don't hesitate to ask for help</span>
+  </div>
+
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="content-queue-wrap" *ngIf="onQueue">
+    <ion-spinner></ion-spinner>
+  </div>
+
+  <div class="content-wrap" *ngIf="!onQueue">
+    <h1 class="contact-name ff-m" [innerHtml]="cn1"></h1>
+    <div class="contact-wrap">
+      <div class="contact-detail">
+        <div class="detail-icon-wrap">
+          <ion-icon name="location-sharp"></ion-icon>
+        </div>
+        <div class="detail-text" [innerHtml]="ca1"></div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon-wrap">
+          <ion-icon name="phone"></ion-icon>
+        </div>
+        <div class="detail-text" [innerHtml]="cn1"></div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon-wrap">
+          <ion-icon name="email"></ion-icon>
+        </div>
+        <div class="detail-text" [innerHtml]="ce1"></div>
+      </div>
+    </div>
+    <h1 class="contact-name ff-m" [innerHtml]="cn2"></h1>
+    <div class="contact-wrap">
+      <div class="contact-detail">
+        <div class="detail-icon-wrap">
+          <ion-icon name="phone"></ion-icon>
+        </div>
+        <div class="detail-text">
+          <h5 class="detail-text-strong" [innerHtml]="ct1"></h5>
+          <span [innerHtml]="cnoa"></span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon-wrap">
+          <ion-icon name="phone"></ion-icon>
+        </div>
+        <div class="detail-text">
+          <h5 class="detail-text-strong" [innerHtml]="ct2"></h5>
+          <span [innerHtml]="cnob"></span>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="detail-icon-wrap">
+          <ion-icon name="phone"></ion-icon>
+        </div>
+        <div class="detail-text">
+          <h5 class="detail-text-strong" [innerHtml]="ct3"></h5>
+          <span [innerHtml]="cnoc"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-end-spacing"></div>
+  
+  <div class="footer-wrap" slot="fixed">
+    <div class="footer-background-wrap">
+      <img class="footer-bg-side side-left" src="../assets/footer/side.png" alt="">
+      <img class="footer-bg-filler side-left" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-center" src="../assets/footer/center.png" alt="">
+      <img class="footer-bg-filler side-right" src="../assets/footer/filler.png" alt="">
+      <img class="footer-bg-side side-right" src="../assets/footer/side.png" alt="">
+      <ion-button shape="round" color="primary" (click)="onCall()">
+        <ion-icon name="phone"></ion-icon>
+      </ion-button>
+    </div>
+    <div class="footer-tabs-wrap">
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/articles' ]" routerDirection="forward">
+        <ion-icon name="home" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/saved-articles' ]" routerDirection="forward">
+        <ion-icon name="saved-articles-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" href="{{external_link}}">
+        <ion-icon name="external" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/events' ]" routerDirection="forward">
+        <ion-icon name="events-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/resource-categories' ]" routerDirection="forward">
+        <ion-icon name="resources-icon" color="medium"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" shape="round" [routerLink]="[ '/media' ]"  routerDirection="forward">
+        <ion-icon name="media-icon" color="medium"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

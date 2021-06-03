@@ -1,0 +1,38 @@
+.contact-name {
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 26px;
+}
+.contact-detail {
+    display: flex;
+    align-items: start;
+    margin-bottom: 12px;
+}
+.contact-wrap {
+    margin: 32px 0;
+}
+.detail-icon-wrap {
+    background: var(--ion-color-primary);
+    min-width: 34px;
+    min-height: 34px;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 13px;
+    box-shadow: 0 3px 6px #00000029;
+}
+.detail-icon-wrap ion-icon {
+    color: white;
+}
+.detail-text {
+    font-size: 14px;
+    line-height: 22px;
+}
+h5.detail-text-strong {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+}
